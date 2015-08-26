@@ -342,6 +342,7 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             'images/{,*/}*.webp',
             '{,*/}*.html',
+            '{,*/}*.xmile',
             'styles/fonts/{,*/}*.*'
           ]
         }, {
@@ -350,6 +351,16 @@ module.exports = function (grunt) {
           cwd: '.',
           src: 'bower_components/bootstrap-sass/assets/fonts/bootstrap/*',
           dest: '<%= config.dist %>'
+        }, {
+          expand: true,
+          dot: true,
+          cwd: 'bower_components/open-sans-fontface',
+          src: [
+            'fonts/{,*/}*.woff2',
+            'fonts/{,*/}*.woff',
+            'fonts/{,*/}*.ttf',
+          ],
+          dest: '<%= config.dist %>/styles'
         }]
       }
     },

@@ -2,7 +2,10 @@
   "name": "sdjs-project",
   "private": true,
   "dependencies": {
-    "bootstrap-sass": "~3.3.5"
+    "bootstrap-sass": "~3.3.5",
+    "jquery": "components/jquery#~2.1.4",
+    "open-sans-fontface": "~1.4.2",
+    "sd": "~0.1.6"
   },
   "overrides": {
     "bootstrap-sass": {
