@@ -5,7 +5,7 @@
     "bootstrap-sass": "~3.3.5",
     "jquery": "components/jquery#~2.1.4",
     "open-sans-fontface": "~1.4.2",
-    "sd": "~0.1.6"
+    "sd": "~0.1.7"
   },
   "overrides": {
     "bootstrap-sass": {
