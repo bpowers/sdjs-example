@@ -5,7 +5,7 @@ var drawing, sim;
 // when the browser resizes (or switches between vertical and
 // horizontal on mobile), we potentially want to scale our diagram up
 // or down.
-var scaleDrawing = function() {
+function scaleDrawing() {
     var viewport = $('#model1').find('#viewport')[0];
     if (!viewport)
         return;
@@ -18,16 +18,40 @@ var scaleDrawing = function() {
 
 $(window).resize(scaleDrawing);
 
+function getQueryParams(qs) {
+    qs = qs.split('+').join(' ');
+
+    var params = {},
+        tokens,
+        re = /[?&]?([^=]+)=([^&]*)/g;
+
+    while (tokens = re.exec(qs)) {
+        params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+    }
+
+    return params;
+}
+
+
 $(function(){
-    sd.load('population.xmile', function(model) {
-        drawing = model.drawing('#model1', true);
+    var params = getQueryParams(document.location.search);
+    var modelPath = 'xmile-v1.0-cs01-examples/practitioners.xmile'; // 'population.xmile';
+    if ('model' in params)
+	modelPath = params['model'];
+
+    var stocksXYCenter = params['use_stock_xy_as_center'] === 'true';
+
+    $('#main-header').text(modelPath);
+
+    sd.load(modelPath, function(model) {
+        drawing = model.drawing('#model1', true, false, stocksXYCenter);
 
         scaleDrawing();
 
         sim = model.sim();
         sim.setDesiredSeries(Object.keys(drawing.named_ents));
         sim.runToEnd().then(function(data) {
-            drawing.visualize(data);
+            //drawing.visualize(data);
         });
     });
 });

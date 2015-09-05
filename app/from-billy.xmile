@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
+    <header>
+        <smile version="1.0" namespace="std, isee"/>
+        <name>testing</name>
+        <uuid>f64b315f-58f5-4113-af1c-fb441f6485b4</uuid>
+        <vendor>isee systems, inc.</vendor>
+        <product version="1.1b2" isee:saved_by_v1="true" isee:compatibility="10.1" lang="en">Stella Professional</product>
+    </header>
+    <sim_specs method="Euler" time_units="months" isee:pause_after_rates="false" isee:instantaneous_flows="true">
+        <start>1</start>
+        <stop>13</stop>
+        <dt reciprocal="true">0.25</dt>
+    </sim_specs>
+    <isee:prefs show_module_prefix="true"/>
+    <model_units/>
+    <model>
+        <variables>
+            <aux name="Converter_1">
+                <eqn>2</eqn>
+            </aux>
+        </variables>
+        <views>
+            <style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" text_background="white" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+                <stock color="blue" background="white" label_side="top" label_angle="0">
+                    <shape type="rectangle" width="45" height="35"/>
+                </stock>
+                <flow color="blue" background="white" label_side="bottom" label_angle="0"/>
+                <module color="blue" background="white" label_side="top" label_angle="0">
+                    <shape type="rectangle" width="55" height="45"/>
+                </module>
+                <aux color="blue" background="white" label_side="bottom" label_angle="0">
+                    <shape type="circle" radius="18"/>
+                </aux>
+                <group color="red" background="white"/>
+            </style>
+            <view show_pages="false" page_width="756" page_height="584" isee:popup_graphs_are_comparative="true" type="stock_flow">
+                <style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" text_background="white" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+                    <connector color="#FF007F" background="white" isee:thickness="1"/>
+                    <text_box color="black" background="white"/>
+                    <numeric_display color="blue" background="white"/>
+                    <graph color="black" background="white" text_background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" legend_position="right"/>
+                    <table color="black" background="#E0E0E0" text_align="right" text_background="white" font_size="12pt" orientation="vertical" wrap_text="false" auto_fit="true" use_alternate_row_colors="false" blank_column_width="80" column_width="160" interval="1" isee:report_month_names="false"/>
+                </style>
+                <aux background="#00FF37" x="143" y="194" name="Converter_1"/>
+                <alias font_style="italic" font_color="red" uid="1" x="281.75" y="194.5" width="54.5" height="11">
+                    <shape type="name_only"/>
+                    <of>Converter_1</of>
+                </alias>
+            </view>
+            <view show_pages="false" page_width="800" page_height="600" isee:simulation_delay="0.10000000000000001" type="interface">
+                <style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" text_background="white" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+                    <button color="black" background="#E0E0E0" transparent="false" corner_radius="0"/>
+                    <slider color="black" background="#E0E0E0" num_ticks="3" label_side="top"/>
+                    <switch color="black" background="#E0E0E0" label_side="top"/>
+                    <graphical_input color="black" background="#E0E0E0"/>
+                    <group_input color="black" background="#E0E0E0"/>
+                    <lamp color="black" background="white"/>
+                </style>
+            </view>
+        </views>
+    </model>
+</xmile>
