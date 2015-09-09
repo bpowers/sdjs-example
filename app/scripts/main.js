@@ -6,6 +6,7 @@ var drawing, sim;
 // horizontal on mobile), we potentially want to scale our diagram up
 // or down.
 function scaleDrawing() {
+    'use strict';
     var viewport = $('#model1').find('#viewport')[0];
     if (!viewport)
         return;
@@ -19,6 +20,7 @@ function scaleDrawing() {
 $(window).resize(scaleDrawing);
 
 function getQueryParams(qs) {
+    'use strict';
     qs = qs.split('+').join(' ');
 
     var params = {},
@@ -51,7 +53,7 @@ $(function(){
         sim = model.sim();
         sim.setDesiredSeries(Object.keys(drawing.named_ents));
         sim.runToEnd().then(function(data) {
-            //drawing.visualize(data);
+            drawing.visualize(data);
         });
     });
 });

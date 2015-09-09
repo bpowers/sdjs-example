@@ -48,10 +48,6 @@
         <eqn>0.03</eqn>
         <units>Per Year</units>
       </aux>
-      <aux name="adoption_rate2">
-        <eqn>0.03</eqn>
-        <units>Per Year</units>
-      </aux>
     </variables>
     <views>
       <style color="#FFAAFF" background="white" font_style="normal" font_weight="normal" text_decoration="normal" text_align="center" vertical_text_align="center" text_background="white" font_color="blue" font_family="Arial" font_size="9pt" padding="2" border_color="black" border_width="1" border_style="none">
@@ -63,12 +59,12 @@
         <connector color="#55AA00" font_color="#55AA00" />
       </style>
       <view show_pages="false" page_width="768" page_height="1001" zoom="220">
-        <connector uid="1" color="#55007F" font_color="#55007F" angle="350">
+        <connector uid="1" color="#55007F" font_color="#55007F" x="79.75" y="124" angle="153.435">
           <from>adoption_rate</from>
           <to>adopting</to>
         </connector>
-        <connector uid="3" angle="90">
-          <from>adoption_rate2</from>
+        <connector uid="2" x="146" y="51" angle="149.421">
+          <from>Practitioners</from>
           <to>adopting</to>
         </connector>
         <stock name="Practitioners" color="lime" background="yellow" font_color="#0055FF" font_family="Britannic Bold" x="168" y="64" />
@@ -78,8 +74,7 @@
             <pt x="145.5" y="64" />
           </pts>
         </flow>
-        <aux name="adoption_rate" x="151.75" y="128" />
-        <aux name="adoption_rate2" x="23.75" y="128" />
+        <aux name="adoption_rate" x="87.75" y="128" />
       </view>
     </views>
   </model>

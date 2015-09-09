@@ -343,6 +343,7 @@ module.exports = function (grunt) {
             'images/{,*/}*.webp',
             '{,*/}*.html',
             '{,*/}*.xmile',
+            'test-models/**',
             'styles/fonts/{,*/}*.*'
           ]
         }, {
@@ -358,7 +359,7 @@ module.exports = function (grunt) {
           src: [
             'fonts/{,*/}*.woff2',
             'fonts/{,*/}*.woff',
-            'fonts/{,*/}*.ttf',
+            'fonts/{,*/}*.ttf'
           ],
           dest: '<%= config.dist %>/styles'
         }]
