@@ -13,8 +13,8 @@ function scaleDrawing() {
     var bbox = viewport.getBBox();
     // truncate to 2 decimal places
     var scale = ((($('.jumbotron').width()/bbox.width)*100)|0)/100;
-    drawing.transform(scale, -bbox.x*scale, -bbox.y*scale+10);
-    $('#model1').attr('height', ((bbox.height*scale)|0) + 20);
+    drawing.transform(scale, 0, 0);
+    $('#model1').attr('height', ((bbox.height*scale)|0)+50);
 }
 
 $(window).resize(scaleDrawing);
@@ -37,7 +37,7 @@ function getQueryParams(qs) {
 
 $(function(){
     var params = getQueryParams(document.location.search);
-    var modelPath = 'xmile-v1.0-cs01-examples/practitioners.xmile'; // 'population.xmile';
+    var modelPath = 'university-promotion.xmile'; // 'population.xmile';
     if ('model' in params)
 	modelPath = params['model'];
 
