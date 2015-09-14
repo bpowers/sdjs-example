@@ -13,7 +13,7 @@ function scaleDrawing() {
     var bbox = viewport.getBBox();
     // truncate to 2 decimal places
     var scale = ((($('.jumbotron').width()/bbox.width)*100)|0)/100;
-    drawing.transform(scale, -bbox.x*scale, -bbox.y*scale);
+    drawing.transform(scale, -bbox.x*scale, -bbox.y*scale+10);
     $('#model1').attr('height', ((bbox.height*scale)|0) + 20);
 }
 
@@ -51,7 +51,7 @@ $(function(){
         scaleDrawing();
 
         sim = model.sim();
-        sim.setDesiredSeries(Object.keys(drawing.named_ents));
+        sim.setDesiredSeries(Object.keys(drawing.namedEnts));
         sim.runToEnd().then(function(data) {
             drawing.visualize(data);
         });
