@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xmile xmlns="http://www.systemdynamics.org/XMILE" version="1.0" level="3">
+    <header>
+        <smile version="1.0"></smile>
+        <name></name>
+        <uuid>cbc26be4-be67-4e2a-a843-3b965e733d0e</uuid>
+        <vendor>SDLabs</vendor>
+        <product version="0.1">go-xmile</product>
+    </header>
+    <sim_specs time_units="year">
+        <start>0</start>
+        <stop>100</stop>
+        <dt>0.25</dt>
+    </sim_specs>
+    <dimensions></dimensions>
+    <model_units></model_units>
+    <behavior non_negative="false"></behavior>
+    <model>
+        <variables>
+            <stock name="Assistant\nProfessors">
+                <eqn>20 </eqn>
+                <non_negative></non_negative>
+                <inflow>assistant_hire_rate</inflow>
+                <outflow>assistant_promotion_rate</outflow>
+                <outflow>assistant_departure_rate</outflow>
+                <units>professors</units>
+            </stock>
+            <stock name="Associate\nProfessors">
+                <eqn>20 </eqn>
+                <non_negative></non_negative>
+                <inflow>assistant_promotion_rate</inflow>
+                <outflow>associate_promotion_rate</outflow>
+                <outflow>associate_departure_rate</outflow>
+                <units>professors</units>
+            </stock>
+            <stock name="Full\nProfessors">
+                <eqn>20 </eqn>
+                <non_negative></non_negative>
+                <inflow>associate_promotion_rate</inflow>
+                <outflow>full_professor_retirement_rate</outflow>
+                <units>professors</units>
+            </stock>
+            <flow name="assistant\npromotion\nrate">
+                <eqn>assistant_review_rate * assistant_promotion_fraction </eqn>
+                <non_negative></non_negative>
+                <units>professors/year</units>
+            </flow>
+            <flow name="associate\npromotion\nrate">
+                <eqn>associate_review_rate * associate_promotion_fraction </eqn>
+                <non_negative></non_negative>
+                <units>professors/year</units>
+            </flow>
+            <flow name="assistant\nhire\nrate">
+                <eqn>4.25 </eqn>
+                <non_negative></non_negative>
+                <units>professors/year</units>
+            </flow>
+            <aux name="total_faculty">
+                <eqn>Associate_Professors + Assistant_Professors + Full_Professors </eqn>
+                <units>professors</units>
+            </aux>
+            <flow name="assistant\ndeparture\nrate">
+                <eqn>assistant_review_rate * ( 1 - assistant_promotion_fraction ) </eqn>
+                <non_negative></non_negative>
+                <units>professors/year</units>
+            </flow>
+            <flow name="associate\ndeparture\nrate">
+                <eqn>associate_review_rate * ( 1 - associate_promotion_fraction ) </eqn>
+                <non_negative></non_negative>
+                <units>professors/year</units>
+            </flow>
+            <flow name="full_professor\nretirement\nrate">
+                <eqn>Full_Professors / average_full_professor_service_time </eqn>
+                <non_negative></non_negative>
+                <units>professors/year</units>
+            </flow>
+            <aux name="assistant\npromotion\nfraction">
+                <eqn>.3 </eqn>
+                <units>dimensionless</units>
+            </aux>
+            <aux name="associate\npromotion\nfraction">
+                <eqn>.3 </eqn>
+                <units>dimensionless</units>
+            </aux>
+            <aux name="average_full\nprofessor\nservice_time">
+                <eqn>30 </eqn>
+                <units>year</units>
+            </aux>
+            <aux name="average\nassistant\nreview_time">
+                <eqn>5 </eqn>
+                <units>year</units>
+            </aux>
+            <aux name="average\nassociate\nreview_time">
+                <eqn>5 </eqn>
+                <units>year</units>
+            </aux>
+            <aux name="assistant\nreview\nrate">
+                <eqn>Assistant_Professors / average_assistant_review_time </eqn>
+                <units>professors/year</units>
+            </aux>
+            <aux name="associate\nreview\nrate">
+                <eqn>Associate_Professors / average_associate_review_time </eqn>
+                <units>professors/year</units>
+            </aux>
+            <stories name=""></stories>
+            <style name="">
+                <stock to="" from=""></stock>
+                <flow to="" from=""></flow>
+                <module to="" from=""></module>
+                <aux to="" from=""></aux>
+                <group to="" from=""></group>
+            </style>
+        </variables>
+        <views>
+            <view scroll_x="0" scroll_y="0" zoom="168.6" page_width="576" page_height="768" page_cols="2">
+                <connector uid="1" angle="79.992">
+                    <from>Assistant_Professors</from>
+                    <to>total_faculty</to>
+                </connector>
+                <connector uid="2" angle="142.306">
+                    <from>Full_Professors</from>
+                    <to>total_faculty</to>
+                </connector>
+                <connector uid="3" angle="109.44">
+                    <from>Associate_Professors</from>
+                    <to>total_faculty</to>
+                </connector>
+                <connector uid="4" angle="122.005">
+                    <from>average_assistant_review_time</from>
+                    <to>assistant_review_rate</to>
+                </connector>
+                <connector uid="5" angle="130.601">
+                    <from>average_associate_review_time</from>
+                    <to>associate_review_rate</to>
+                </connector>
+                <connector uid="6" angle="102.529">
+                    <from>assistant_promotion_fraction</from>
+                    <to>assistant_promotion_rate</to>
+                </connector>
+                <connector uid="7" angle="96.3402">
+                    <from>associate_promotion_fraction</from>
+                    <to>associate_promotion_rate</to>
+                </connector>
+                <connector uid="8" angle="270">
+                    <from>Assistant_Professors</from>
+                    <to>assistant_review_rate</to>
+                </connector>
+                <connector uid="9" angle="243.435">
+                    <from>assistant_review_rate</from>
+                    <to>assistant_departure_rate</to>
+                </connector>
+                <connector uid="10" angle="54.4623">
+                    <from>assistant_review_rate</from>
+                    <to>assistant_promotion_rate</to>
+                </connector>
+                <connector uid="11" angle="270">
+                    <from>Associate_Professors</from>
+                    <to>associate_review_rate</to>
+                </connector>
+                <connector uid="12" angle="57.9946">
+                    <from>associate_review_rate</from>
+                    <to>associate_promotion_rate</to>
+                </connector>
+                <connector uid="13" angle="243.435">
+                    <from>associate_review_rate</from>
+                    <to>associate_departure_rate</to>
+                </connector>
+                <connector uid="14" angle="130.601">
+                    <from>assistant_promotion_fraction</from>
+                    <to>assistant_departure_rate</to>
+                </connector>
+                <connector uid="15" angle="153.435">
+                    <from>associate_promotion_fraction</from>
+                    <to>associate_departure_rate</to>
+                </connector>
+                <connector uid="16" angle="116.565">
+                    <from>average_full_professor_service_time</from>
+                    <to>full_professor_retirement_rate</to>
+                </connector>
+                <connector uid="17" angle="307.875">
+                    <from>Full_Professors</from>
+                    <to>full_professor_retirement_rate</to>
+                </connector>
+                <style background="white" color="blue" font-family="Arial" font-size="9pt" font-style="normal" font-weight="normal" text-align="center" text-decoration="none" padding="2" border-color="black" border-style="none" border-width="0">
+                    <graph type="" title="" background="#FFFDCF" show_grid="false" numbers_on_plots="false" use_five_segments="false" cleared="" time_precision="0"></graph>
+                    <connector color="#FF007F"></connector>
+                    <text_box background="white" color="blue" font-family="Arial" font-size="9pt" font-style="normal" font-weight="normal" text-align="left" text-decoration="none" padding="2" border-color="black" border-style="none" border-width="1"></text_box>
+                    <numeric_display background="white" color="blue" font-family="Arial" font-size="9pt" font-style="normal" font-weight="normal" text-align="left" text-decoration="none" padding="2" border-color="black" border-style="none" border-width="1"></numeric_display>
+                    <table background="#E0E0E0" color="black" font-family="Arial" font-size="12pt" font-style="normal" font-weight="normal" text-align="center" text-decoration="none" padding="2" border-color="black" border-style="none" border-width="1"></table>
+                </style>
+                <stock x="136.25" y="129.5" name="Assistant\nProfessors"></stock>
+                <stock x="296.25" y="129.5" name="Associate\nProfessors"></stock>
+                <stock x="466" y="129.5" name="Full\nProfessors"></stock>
+                <flow x="210.25" y="129.5" name="assistant\npromotion\nrate" label_side="top">
+                    <pts>
+                        <pt x="158.75" y="129.5"></pt>
+                        <pt x="273.75" y="129.5"></pt>
+                    </pts>
+                </flow>
+                <flow x="375.125" y="129.5" name="associate\npromotion\nrate" label_side="top">
+                    <pts>
+                        <pt x="318.75" y="129.5"></pt>
+                        <pt x="443.5" y="129.5"></pt>
+                    </pts>
+                </flow>
+                <flow x="69.125" y="129.5" name="assistant\nhire\nrate">
+                    <pts>
+                        <pt x="24.5" y="129.5"></pt>
+                        <pt x="113.75" y="129.5"></pt>
+                    </pts>
+                </flow>
+                <aux x="234.721" y="43.2156" name="total_faculty" label_side="top"></aux>
+                <flow x="136.25" y="231" name="assistant\ndeparture\nrate" label_side="left">
+                    <pts>
+                        <pt x="136.25" y="147"></pt>
+                        <pt x="136.25" y="336"></pt>
+                    </pts>
+                </flow>
+                <flow x="296.25" y="230.875" name="associate\ndeparture\nrate" label_side="left">
+                    <pts>
+                        <pt x="296.25" y="147"></pt>
+                        <pt x="296.25" y="335.75"></pt>
+                    </pts>
+                </flow>
+                <flow x="466" y="229.75" name="full_professor\nretirement\nrate" label_side="right">
+                    <pts>
+                        <pt x="466" y="147"></pt>
+                        <pt x="466" y="333.5"></pt>
+                    </pts>
+                </flow>
+                <aux x="264.75" y="339.5" name="assistant\npromotion\nfraction"></aux>
+                <aux x="435.75" y="339.5" name="associate\npromotion\nfraction"></aux>
+                <aux x="540.591" y="339.5" name="average_full\nprofessor\nservice_time"></aux>
+                <aux x="219.75" y="254.5" name="average\nassistant\nreview_time"></aux>
+                <aux x="389.75" y="254.5" name="average\nassociate\nreview_time"></aux>
+                <aux x="192.25" y="201.875" name="assistant\nreview\nrate" label_side="top"></aux>
+                <aux x="357.125" y="201.875" name="associate\nreview\nrate" label_side="top"></aux>
+            </view>
+            <view name="interface" scroll_x="0" scroll_y="0" zoom="0" page_width="788" page_height="528">
+                <pages show="false" row_count="0" column_count="0" home_page="0"></pages>
+            </view>
+        </views>
+    </model>
+</xmile>
