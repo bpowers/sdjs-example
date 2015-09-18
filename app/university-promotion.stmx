@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xmile version="1.0" level="3" xmlns="http://www.systemdynamics.org/XMILE" xmlns:isee="http://iseesystems.com/XMILE">
+	<header>
+		<smile version="1.0" namespace="std, isee" />
+		<name />
+		<uuid>cbc26be4-be67-4e2a-a843-3b965e733d0e</uuid>
+		<vendor>isee systems, inc.</vendor>
+		<product version="1.0.5" isee:saved_by_v1="true" isee:compatibility="10.1" lang="en">Stella Modeler for iPad</product>
+	</header>
+	<sim_specs method="Euler" time_units="year" isee:pause_after_rates="false" isee:instantaneous_flows="false">
+		<start>0</start>
+		<stop>100</stop>
+		<dt>0.25</dt>
+	</sim_specs>
+	<style>
+		<model font-name="Arial" font-size="9pt" />
+		<interface font-name="Arial" font-size="9pt" />
+	</style>
+	<model_units>
+		<units name="Dimensionless">
+			<eqn>1</eqn>
+			<alias>dmnl</alias>
+			<alias>unitless</alias>
+		</units>
+		<units name="Years">
+			<eqn />
+			<alias>yr</alias>
+			<alias>year</alias>
+		</units>
+	</model_units>
+	<model>
+		<stock name="Assistant\nProfessors">
+			<eqn>20 </eqn>
+			<inflow>assistant_hire_rate</inflow>
+			<outflow>assistant_promotion_rate</outflow>
+			<outflow>assistant_departure_rate</outflow>
+			<non_negative />
+			<units>professors</units>
+			<display x="136.25" y="129.5" />
+		</stock>
+		<stock name="Associate\nProfessors">
+			<eqn>20 </eqn>
+			<inflow>assistant_promotion_rate</inflow>
+			<outflow>associate_promotion_rate</outflow>
+			<outflow>associate_departure_rate</outflow>
+			<non_negative />
+			<units>professors</units>
+			<display x="296.25" y="129.5" />
+		</stock>
+		<stock name="Full\nProfessors">
+			<eqn>20 </eqn>
+			<inflow>associate_promotion_rate</inflow>
+			<outflow>full_professor_retirement_rate</outflow>
+			<non_negative />
+			<units>professors</units>
+			<display x="466" y="129.5" />
+		</stock>
+		<flow name="assistant\npromotion\nrate">
+			<eqn>assistant_review_rate * assistant_promotion_fraction </eqn>
+			<non_negative />
+			<units>professors/year</units>
+			<display label_side="top" x="210.25" y="129.5">
+				<pts>
+					<pt x="158.75" y="129.5" />
+					<pt x="273.75" y="129.5" />
+				</pts>
+			</display>
+		</flow>
+		<flow name="associate\npromotion\nrate">
+			<eqn>associate_review_rate * associate_promotion_fraction </eqn>
+			<non_negative />
+			<units>professors/year</units>
+			<display label_side="top" x="375.125" y="129.5">
+				<pts>
+					<pt x="318.75" y="129.5" />
+					<pt x="443.5" y="129.5" />
+				</pts>
+			</display>
+		</flow>
+		<flow name="assistant\nhire\nrate">
+			<eqn>4.25 </eqn>
+			<non_negative />
+			<units>professors/year</units>
+			<display x="69.125" y="129.5">
+				<pts>
+					<pt x="24.5" y="129.5" />
+					<pt x="113.75" y="129.5" />
+				</pts>
+			</display>
+		</flow>
+		<aux name="total_faculty">
+			<eqn>Associate_Professors + Assistant_Professors + Full_Professors </eqn>
+			<units>professors</units>
+			<display label_side="top" x="234.721" y="43.2156" />
+		</aux>
+		<flow name="assistant\ndeparture\nrate">
+			<eqn>assistant_review_rate * ( 1 - assistant_promotion_fraction ) </eqn>
+			<non_negative />
+			<units>professors/year</units>
+			<display label_side="left" x="136.25" y="231">
+				<pts>
+					<pt x="136.25" y="147" />
+					<pt x="136.25" y="336" />
+				</pts>
+			</display>
+		</flow>
+		<flow name="associate\ndeparture\nrate">
+			<eqn>associate_review_rate * ( 1 - associate_promotion_fraction ) </eqn>
+			<non_negative />
+			<units>professors/year</units>
+			<display label_side="left" x="296.25" y="230.875">
+				<pts>
+					<pt x="296.25" y="147" />
+					<pt x="296.25" y="335.75" />
+				</pts>
+			</display>
+		</flow>
+		<flow name="full_professor\nretirement\nrate">
+			<eqn>Full_Professors / average_full_professor_service_time </eqn>
+			<non_negative />
+			<units>professors/year</units>
+			<display label_side="right" x="466" y="229.75">
+				<pts>
+					<pt x="466" y="147" />
+					<pt x="466" y="333.5" />
+				</pts>
+			</display>
+		</flow>
+		<aux name="assistant\npromotion\nfraction">
+			<eqn>.3 </eqn>
+			<units>dimensionless</units>
+			<display x="264.75" y="339.5" />
+		</aux>
+		<aux name="associate\npromotion\nfraction">
+			<eqn>.3 </eqn>
+			<units>dimensionless</units>
+			<display x="435.75" y="339.5" />
+		</aux>
+		<aux name="average_full\nprofessor\nservice_time">
+			<eqn>30 </eqn>
+			<units>year</units>
+			<display x="540.591" y="339.5" />
+		</aux>
+		<aux name="average\nassistant\nreview_time">
+			<eqn>5 </eqn>
+			<units>year</units>
+			<display x="219.75" y="254.5" />
+		</aux>
+		<aux name="average\nassociate\nreview_time">
+			<eqn>5 </eqn>
+			<units>year</units>
+			<display x="389.75" y="254.5" />
+		</aux>
+		<aux name="assistant\nreview\nrate">
+			<eqn>Assistant_Professors / average_assistant_review_time </eqn>
+			<units>professors/year</units>
+			<display label_side="top" x="192.25" y="201.875" />
+		</aux>
+		<aux name="associate\nreview\nrate">
+			<eqn>Associate_Professors / average_associate_review_time </eqn>
+			<units>professors/year</units>
+			<display label_side="top" x="357.125" y="201.875" />
+		</aux>
+		<display show_pages="false" page_width="576" page_height="768" page_cols="2" zoom="168.6" isee:popup_graphs_are_comparative="true">
+			<connector uid="1" font-color="#FF007F" isee:thickness="1" angle="79.992">
+				<from>Assistant_Professors</from>
+				<to>total_faculty</to>
+			</connector>
+			<connector uid="2" font-color="#FF007F" isee:thickness="1" angle="142.306">
+				<from>Full_Professors</from>
+				<to>total_faculty</to>
+			</connector>
+			<connector uid="3" font-color="#FF007F" isee:thickness="1" angle="109.44">
+				<from>Associate_Professors</from>
+				<to>total_faculty</to>
+			</connector>
+			<connector uid="4" font-color="#FF007F" isee:thickness="1" angle="122.005">
+				<from>average_assistant_review_time</from>
+				<to>assistant_review_rate</to>
+			</connector>
+			<connector uid="5" font-color="#FF007F" isee:thickness="1" angle="130.601">
+				<from>average_associate_review_time</from>
+				<to>associate_review_rate</to>
+			</connector>
+			<connector uid="6" font-color="#FF007F" isee:thickness="1" angle="102.529">
+				<from>assistant_promotion_fraction</from>
+				<to>assistant_promotion_rate</to>
+			</connector>
+			<connector uid="7" font-color="#FF007F" isee:thickness="1" angle="96.3402">
+				<from>associate_promotion_fraction</from>
+				<to>associate_promotion_rate</to>
+			</connector>
+			<connector uid="8" font-color="#FF007F" isee:thickness="1" angle="270">
+				<from>Assistant_Professors</from>
+				<to>assistant_review_rate</to>
+			</connector>
+			<connector uid="9" font-color="#FF007F" isee:thickness="1" angle="243.435">
+				<from>assistant_review_rate</from>
+				<to>assistant_departure_rate</to>
+			</connector>
+			<connector uid="10" font-color="#FF007F" isee:thickness="1" angle="54.4623">
+				<from>assistant_review_rate</from>
+				<to>assistant_promotion_rate</to>
+			</connector>
+			<connector uid="11" font-color="#FF007F" isee:thickness="1" angle="270">
+				<from>Associate_Professors</from>
+				<to>associate_review_rate</to>
+			</connector>
+			<connector uid="12" font-color="#FF007F" isee:thickness="1" angle="57.9946">
+				<from>associate_review_rate</from>
+				<to>associate_promotion_rate</to>
+			</connector>
+			<connector uid="13" font-color="#FF007F" isee:thickness="1" angle="243.435">
+				<from>associate_review_rate</from>
+				<to>associate_departure_rate</to>
+			</connector>
+			<connector uid="14" font-color="#FF007F" isee:thickness="1" angle="130.601">
+				<from>assistant_promotion_fraction</from>
+				<to>assistant_departure_rate</to>
+			</connector>
+			<connector uid="15" font-color="#FF007F" isee:thickness="1" angle="153.435">
+				<from>associate_promotion_fraction</from>
+				<to>associate_departure_rate</to>
+			</connector>
+			<connector uid="16" font-color="#FF007F" isee:thickness="1" angle="116.565">
+				<from>average_full_professor_service_time</from>
+				<to>full_professor_retirement_rate</to>
+			</connector>
+			<connector uid="17" font-color="#FF007F" isee:thickness="1" angle="307.875">
+				<from>Full_Professors</from>
+				<to>full_professor_retirement_rate</to>
+			</connector>
+			<style color="blue" background="white" font-style="normal" font-weight="normal" text-decoration="none" text-align="center" vertical-text-align="center" text-background="white" font-color="blue" font-family="Arial" font-size="9pt" padding="2" border-color="black" border-width="0" border-style="none">
+				<connector color="#FF007F" isee:thickness="1" />
+				<text_box color="blue" background="white" font-style="normal" font-weight="normal" text-decoration="none" text-align="left" vertical-text-align="top" text-background="white" font-color="black" font-family="Arial" font-size="9pt" padding="2" border-color="black" border-width="1" border-style="none" />
+				<numeric_display color="blue" background="white" font-style="normal" font-weight="normal" text-decoration="none" text-align="left" vertical-text-align="top" text-background="white" font-color="black" font-family="Arial" font-size="9pt" padding="2" border-color="black" border-width="1" border-style="none" />
+				<graph color="black" background="#FFFDCF" font-style="normal" font-weight="normal" text-decoration="none" text-align="center" vertical-text-align="center" text-background="white" font-color="black" font-family="Arial" font-size="12pt" padding="2" border-color="black" border-width="1" border-style="none" axis-color="#666666" grid-color="#666666" legend-position="bottom" axis-title-font-style="normal" axis-title-font-weight="normal" axis-title-text-decoration="none" axis-title-text-align="center" axis-title-vertical-text-align="center" axis-title-text-background="white" axis-title-font-color="black" axis-title-font-family="Arial" axis-title-font-size="10pt" axis-title-text-padding="2" axis-title-text-border-color="black" axis-title-text-border-width="0" axis-title-text-border-style="none" axis-label-font-style="normal" axis-label-font-weight="normal" axis-label-text-decoration="none" axis-label-text-align="center" axis-label-vertical-text-align="center" axis-label-text-background="white" axis-label-font-color="black" axis-label-font-family="Arial" axis-label-font-size="10pt" axis-label-text-padding="2" axis-label-text-border-color="black" axis-label-text-border-width="0" axis-label-text-border-style="none" />
+				<table color="black" background="#E0E0E0" font-style="normal" font-weight="normal" text-decoration="none" text-align="center" vertical-text-align="center" text-background="white" font-color="black" font-family="Arial" font-size="12pt" padding="2" border-color="black" border-width="1" border-style="none" orientation="vertical" wrap_text="false" auto_fit="true" use_alternate_row_colors="false" horizontal_scrolling_enabled="true" blank_column_width="80" column_width="160" hide_detail="false" interval="1" isee:report_month_names="false" header-font-style="normal" header-font-weight="normal" header-text-decoration="none" header-text-align="center" header-vertical-text-align="center" header-text-background="white" header-font-color="black" header-font-family="Arial" header-font-size="12pt" header-text-padding="2" header-text-border-color="black" header-text-border-width="1" header-text-border-style="none" />
+			</style>
+		</display>
+		<interface show_pages="false" page_width="788" page_height="528">
+			<simulation_delay>0</simulation_delay>
+			<pages />
+		</interface>
+		<isee:stories />
+		<style color="blue" background="white" font-style="normal" font-weight="normal" text-decoration="none" text-align="center" vertical-text-align="center" text-background="white" font-color="blue" font-family="Arial" font-size="9pt" padding="2" border-color="black" border-width="0" border-style="none">
+			<stock label_side="top" label_angle="0" size="medium" />
+			<flow label_side="bottom" label_angle="0" />
+			<module label_side="center" label_angle="0" size="medium" />
+			<aux label_side="bottom" label_angle="0" size="medium" />
+			<group color="red" font-color="red" />
+		</style>
+	</model>
+</xmile>
