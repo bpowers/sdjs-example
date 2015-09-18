@@ -55,5 +55,8 @@ $(function(){
         sim.runToEnd().then(function(data) {
             drawing.visualize(data);
         });
+        sim.csv().then(function(csv) {
+            console.log(csv);
+        });
     });
 });
